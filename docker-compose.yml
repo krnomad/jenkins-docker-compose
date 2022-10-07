@@ -1,0 +1,19 @@
+version: '3.3'
+
+# For environment, see jenkins.env
+services:
+  jenkins:
+    image: jenkins/jenkins:2.361.1-lts-jdk11
+    container_name: jenkins-cicd
+    user: ${UID}:${GID}
+#    privileged: true
+#    env_file:
+#      - jenkins.env
+
+    ports:
+      - ${JENKINS_HTTPS_PORT_INT:-8080}:8080
+      - ${JENKINS_AGENT_PORT_INT:-50000}:50000
+
+    volumes:
+      - ${JENKINS_HOME}:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # for docker-in-docker
