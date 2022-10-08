@@ -6,7 +6,8 @@ services:
     image: jenkins/jenkins:2.361.1-lts-jdk11
     container_name: jenkins-cicd
     user: ${UID}:${GID}
-#    privileged: true
+    restart: always
+    privileged: true
 #    env_file:
 #      - jenkins.env
 
